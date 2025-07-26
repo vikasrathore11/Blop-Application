@@ -19,11 +19,8 @@ Hibernate
 
 MySQL Database
 
-Frontend (Optional/Future):
 
-HTML, CSS, JS (or React/Angular)
-
-📁 Features
+📁 Features----------------------->
 
 🔐 User Registration with password encryption
 
@@ -33,6 +30,8 @@ HTML, CSS, JS (or React/Angular)
 
 ✍️ Create, Update, Delete Blog Posts
 
+✍️ Create, Update, Delete comment to Posts
+
 🔎 Get all blogs / blogs by user / single blog
 
 📄 Global Exception Handling
@@ -41,35 +40,25 @@ HTML, CSS, JS (or React/Angular)
 
 User Table:
 
-id (UUID)
+id (UUID) | username  |password | email | roles (Many-to-Many with Role table)
 
-username
-
-email
-
-password
-
-roles (Many-to-Many with Role table)
 
 Role Table:
 
-id
+id | name (e.g. ROLE_USER, ROLE_ADMIN)
 
-name (e.g. ROLE_USER, ROLE_ADMIN)
 
 Post Table:
 
-id
+id | title | content | createdAt | updatedAt
 
-title
 
-content
 
-imageName
+Comment Table: 
 
-createdAt
+id | titile | content | authore | createdTime |  updatedTime | comments(OneToMany)
 
-updatedAt
+
 
 user_id (Foreign Key)
 
@@ -77,25 +66,36 @@ user_id (Foreign Key)
 
 🔐 Authentication
 
-POST /api/auth/register → Register user
+POST /auth/register → Register user and save to dataBase
 
-POST /api/auth/login → Login and get JWT token
+POST /auth/login → Login and get JWT token
 
-👥 Users
-
-GET /api/users/ → Get all users (Admin only)
-
-GET /api/users/{id} → Get user by ID
+GET /auth/current →  to check currnet user login
 
 📑 Posts
 
-POST /api/posts/ → Create new post
+POST /post/create → Create new post
 
-PUT /api/posts/{id} → Update post
+PUT /post/{id} → Update post
 
-DELETE /api/posts/{id} → Delete post
+DELETE /post/{id} → Delete post
 
-GET /api/posts/ → Get all posts
+GET /post/getAll → Get all posts
 
-GET /api/posts/user/{userId} → Get posts by user
+GET /post/getSingle/{pstIdId} → Get simgle  post
+
+📑 Comment
+
+POST /comment/create → Create new comment to post
+
+PUT /comment/update{id} → Update commnet
+
+DELETE /commnet/delete/{id} → Delete commnet
+
+GET /comment/getSingleComment/{commentId} → Get single  comment
+
+GET /comment/readComment/{pstIdId} → Get  single  post to all  comment
+
+
+
 
